@@ -6,6 +6,13 @@ document.addEventListener('keydown', (e)=> {
     let divsBeforeActive = [...document.getElementById('main').children].indexOf(document.activeElement.parentElement);
     let mLeft = window.getComputedStyle(document.activeElement.parentElement).marginLeft || 0
 
+    document.querySelectorAll('.expand').forEach(function(element) {
+        element.addEventListener('input', function() {
+            this.style.width = '6.05rem';  // Reset width to auto
+            this.style.width = `${this.scrollWidth}px`;  // Set width to match content
+        });
+    });
+    
     if (e.key === 'Tab') {
         e.preventDefault()
 
@@ -27,16 +34,16 @@ document.addEventListener('keydown', (e)=> {
 
         newDiv.innerHTML = `
         
-        <input id="node" placeholder="${divsBeforeActive}">
+        <input id="node" placeholder="${divsBeforeActive}" class="expand">
         
-        <svg width="200" height="65" xmlns="http://www.w3.org/2000/svg" id="svg1">
+        <svg width="200" height="45" xmlns="http://www.w3.org/2000/svg" id="svg1">
             <path
-                d="M 30 0 Q 40 60 120 60"
-                stroke="#008c00" stroke-width="5" fill="none" />
+                d="M 30 -5 Q 35 45 110 40"
+                stroke="#787878ff" stroke-width="5" fill="none" />
         </svg>`
         
         newDiv.style.marginLeft = mLeft
-        newDiv.style.marginTop = `10px`
+        newDiv.style.marginTop = `-18px`
         document.getElementById('main').insertBefore(newDiv, document.activeElement.parentElement.nextElementSibling);
         newDiv.querySelector('input').focus()
 
@@ -60,16 +67,20 @@ document.addEventListener('keydown', (e)=> {
 
     if (e.key === 'p' && e.ctrlKey){
         document.activeElement.style.backgroundColor = '#b41414ff';
+        document.activeElement.parentElement.previousElementSibling?.querySelector('svg path')?.setAttribute('stroke', '#b41414ff');
     }
 
     if (e.key === 's' && e.ctrlKey){
         e.preventDefault()
         document.activeElement.style.backgroundColor = '#008c00ff';
+
+        document.activeElement.parentElement.previousElementSibling?.querySelector('svg path')?.setAttribute('stroke', '#008c00');
     }
 
     if (e.key === 'n' && e.ctrlKey){
         e.preventDefault()
         document.activeElement.style.backgroundColor = '#787878ff';
+        document.activeElement.parentElement.previousElementSibling?.querySelector('svg path')?.setAttribute('stroke', '#787878ff');
     }
 });
 

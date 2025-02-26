@@ -19,15 +19,20 @@
     input{
         background-color: rgb(120, 120, 120);
         color: white;
+        width: 7rem;
+        font-size: 0.8rem;
         font-weight: 600;
         border-radius: 8px;
         border-style: none;
         padding: 5px;
+        padding-left: 10px;
     }
     input:focus, textarea:focus {
         outline: none;
         border: 1px solid rgb(170, 170, 170);
     }
+    .expand { box-sizing: content-box; }
+
 
     #svg1{
         display: flex;
@@ -40,12 +45,12 @@
     <main id="main">
 
         <div>
-            <input id="node">
+            <input id="node" class="expand">
 
-            <svg width="200" height="65" xmlns="http://www.w3.org/2000/svg" id="svg1">
+            <svg width="200" height="45" xmlns="http://www.w3.org/2000/svg" id="svg1">
                 <path
-                    d="M 30 0 Q 40 60 120 60"
-                    stroke="#008c00" stroke-width="5" fill="none" />
+                    d="M 30 -5 Q 35 45 110 40"
+                    stroke="#787878ff" stroke-width="5" fill="none" />
             </svg>
 
         </div>
